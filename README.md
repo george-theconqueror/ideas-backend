@@ -14,7 +14,7 @@ A FastAPI backend that manages a ranking system for challenge ideas using Elo ra
 
 ## Setup
 
-1. Create `.env` file with `DATABASE_URL`
+1. Create `.env` file with `DATABASE_URL, FRONTEND_URL`
 2. Install dependencies: `pip install -r requirements.txt`
 3. Run: `uvicorn main:app --reload`
 

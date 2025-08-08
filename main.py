@@ -10,8 +10,10 @@ import os
 # Load environment variables from .env file
 load_dotenv()
 
-# Get database URL from environment variable
+# Get environment variables
 DATABASE_URL = os.getenv("DATABASE_URL")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable is not set")
 
@@ -30,7 +32,7 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "https://the-conqueror-challenge-ideas.vercel.app"], 
+    allow_origins=[FRONTEND_URL, "http://localhost:3000", "http://127.0.0.1:3000"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -45,6 +47,11 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@app.get("/")
+async def root():
+    """Root endpoint"""
+    return ""
 
 
 
