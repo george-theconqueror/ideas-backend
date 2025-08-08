@@ -160,3 +160,4 @@ logs/
 import_titles.py
 Good_ideas.csv
 *.csv
+.vercel
